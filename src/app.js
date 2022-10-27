@@ -8,6 +8,9 @@ const app = express();
 app.use(express.json());
 
 app.post('/login', User.doLogin);
+app.post('/user', (_req, res) => {
+    res.status(200).send('Toca pintinho');
+});
 
 // ...
 
