@@ -1,7 +1,7 @@
 const schema = require('./schema');
 
-const validateLogin = (name, password) => {
-    const loginData = [name, password];
+const validateLogin = (email, password) => {
+    const loginData = [email, password];
 
     loginData.forEach((loginItem) => {
         const { error } = schema.loginSchema.validate(loginItem);

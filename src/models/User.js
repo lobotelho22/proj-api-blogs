@@ -8,6 +8,7 @@ const UserModel = (sequelize, DataTypes) => {
     },
     {
         underscored: true,
+        timestamps: false,
     });
 
     return User;
