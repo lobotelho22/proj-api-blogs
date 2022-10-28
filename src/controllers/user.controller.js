@@ -21,6 +21,11 @@ const doLogin = async (req, res) => {
     }
 };
 
+const createUser = async (req, res) => {
+    res.status(200).json({ message: 'Salci-fu-fu' });
+};
+
 module.exports = {
   doLogin,
+  createUser,
 };
