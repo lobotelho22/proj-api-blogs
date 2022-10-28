@@ -11,7 +11,6 @@ const validation = (req, res, next) => {
         
     if (error) result = { type: 'REQUIRED_FIELD', message: error.message };
 
-    console.log(result);
     if (result.type) { return res.status(400).json({ message: result.message }); }
 
     next();

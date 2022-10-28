@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 app.post('/login', middle.authRequiredData, User.doLogin);
-app.post('/user', User.createUser);
+app.post('/user', middle.validation, User.createUser);
 
 // ...
 
