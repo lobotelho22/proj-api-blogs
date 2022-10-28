@@ -1,17 +1,7 @@
 require('dotenv/config');
 const jwt = require('jsonwebtoken');
 
-const loginValidation = require('./validations/validationLogin');
 const { User } = require('../models');
-
-const checkLogin = async (email, password) => {
-  if (email && password) {
-    const error = await loginValidation.validateLogin(email, password);
-    return error;
-  }
-
-  return { type: 'REQUIRED_FIELD', message: 'Some required fields are missing' };
-};
 
 const getByEmailAndPassword = async (email, password) => {
   const user = await User.findOne({ where: { email, password } });
@@ -36,7 +26,6 @@ const getToken = (userData) => {
 };
 
 module.exports = {
-  checkLogin,
   getByEmailAndPassword,
   getToken,
 };

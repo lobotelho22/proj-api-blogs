@@ -2,12 +2,13 @@ const express = require('express');
 
 // ...
 const User = require('./controllers/user.controller');
+const middle = require('./middlewares');
 
 const app = express();
 
 app.use(express.json());
 
-app.post('/login', User.doLogin);
+app.post('/login', middle.authRequiredData, User.doLogin);
 app.post('/user', User.createUser);
 
 // ...
