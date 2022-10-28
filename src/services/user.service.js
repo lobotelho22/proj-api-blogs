@@ -9,6 +9,11 @@ const getByAttributes = async (ObjAtributesAndValues) => {
   return { type: null, message: user.dataValues };
 };
 
+const createUser = async (atributtesAndValues) => {
+  const newUser = await User.create(atributtesAndValues);
+  return newUser;
+};
+
 const getToken = (userData) => {
   const secret = process.env.JWT_SECRET;
   const jwtConfig = {
@@ -26,6 +31,7 @@ const getToken = (userData) => {
 };
 
 module.exports = {
+  createUser,
   getByAttributes,
   getToken,
 };

@@ -20,10 +20,14 @@ const createUser = async (req, res) => {
     try {
         const { email } = req.body;
         const emailIsNew = await UserService.getByAttributes({ email });
-        console.log(emailIsNew);
+
         if (!emailIsNew.type) return res.status(409).json({ message: 'User already registered' });
 
-        res.status(201).json({ message: 'Salci-fu-fu' });
+        const newUser = await UserService.createUser(req.body);
+
+        const token = UserService.getToken(newUser.dataValues);
+
+        res.status(201).json({ token });
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ message: 'Xiii, algo deu errado...' });   
