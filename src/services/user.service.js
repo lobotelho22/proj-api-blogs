@@ -3,6 +3,22 @@ const jwt = require('jsonwebtoken');
 
 const { User } = require('../models');
 
+const getAll = async () => {
+  const users = await User.findAll();
+
+  const usersList = users.map((user) => {
+    const userData = {
+      id: user.id,
+      displayName: user.displayName,
+      email: user.email,
+      image: user.image,
+    };
+    return userData;
+    });
+
+  return usersList;
+};
+
 const getByAttributes = async (ObjAtributesAndValues) => {
   const user = await User.findOne({ where: { ...ObjAtributesAndValues } });
   if (!user) return { type: 'DATA_NOT_FOUND', message: 'Verify fields\' information' };
@@ -32,6 +48,7 @@ const getToken = (userData) => {
 
 module.exports = {
   createUser,
+  getAll,
   getByAttributes,
   getToken,
 };
