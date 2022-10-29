@@ -17,6 +17,10 @@ app.post('/user', middle.validation, User.createUser);
 app.get('/categories', middle.validateToken, Category.getAllCategories);
 app.post('/categories', middle.validateToken, middle.authRequiredData, Category.createCategory);
 
+app.post('/post', middle.validateToken, (req, res) => {
+    res.status(200).json({ message: 'Aqui estamos, amigos' });
+});
+
 // ...
 
 // É importante exportar a constante `app`,
