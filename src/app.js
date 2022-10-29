@@ -14,6 +14,7 @@ app.get('/user/:id', middle.validateToken, User.getUser);
 app.post('/login', middle.authRequiredData, User.doLogin);
 app.post('/user', middle.validation, User.createUser);
 
+app.get('/categories', middle.validateToken, Category.getAllCategories);
 app.post('/categories', middle.validateToken, middle.authRequiredData, Category.createCategory);
 
 // ...
