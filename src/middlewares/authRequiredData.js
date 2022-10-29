@@ -1,5 +1,10 @@
 const Utils = require('../utils');
 
+const errorMessage = (path) => {
+    if (path === '/login') return 'Some required fields are missing';
+    if (path === '/categories') return '"name" is required';
+};
+
 const authRequiredData = (req, res, next) => {
     const { path } = req.route;
     const bodyData = req.body;
@@ -9,7 +14,7 @@ const authRequiredData = (req, res, next) => {
     const requiredDataTest = Utils.getRequiredDataOk(bodyData, path);
 
     if (!requiredDataTest || !dataNoteEmpty) {
-        return res.status(400).json({ message: 'Some required fields are missing' });
+        return res.status(400).json({ message: errorMessage(path) });
     }
 
     next();
