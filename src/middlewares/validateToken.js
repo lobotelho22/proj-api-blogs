@@ -16,7 +16,7 @@ const validateToken = async (req, res, next) => {
 
         const user = await UserService.getByAttributes({ id: userId });
 
-        if (!user) return res.status(401).json({ message: 'Failed to fetch user' });
+        if (!user) return res.status(401).json({ message: 'User does not exist' });
 
         req.user = user;
 

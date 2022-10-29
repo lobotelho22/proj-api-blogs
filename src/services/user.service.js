@@ -25,6 +25,20 @@ const getByAttributes = async (ObjAtributesAndValues) => {
   return { type: null, message: user.dataValues };
 };
 
+const getById = async (id) => {
+  const userInfo = await User.findByPk(id);
+  if (!userInfo) return null;
+  
+  const user = {
+    id: userInfo.id,
+    displayName: userInfo.displayName,
+    email: userInfo.email,
+    image: userInfo.image,
+  };
+
+  return user;
+};
+
 const createUser = async (atributtesAndValues) => {
   const newUser = await User.create(atributtesAndValues);
   return newUser;
@@ -50,5 +64,6 @@ module.exports = {
   createUser,
   getAll,
   getByAttributes,
+  getById,
   getToken,
 };
