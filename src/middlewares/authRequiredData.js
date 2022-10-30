@@ -3,6 +3,7 @@ const Utils = require('../utils');
 const errorMessage = (path) => {
     if (path === '/login') return 'Some required fields are missing';
     if (path === '/categories') return '"name" is required';
+    if (path === '/post') return 'Some required fields are missing';
 };
 
 const authRequiredData = (req, res, next) => {

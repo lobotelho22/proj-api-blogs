@@ -3,6 +3,7 @@ const express = require('express');
 // ...
 const User = require('./controllers/user.controller');
 const Category = require('./controllers/category.controller');
+const BlogPost = require('./controllers/blogpost.controller');
 const middle = require('./middlewares');
 
 const app = express();
@@ -17,9 +18,7 @@ app.post('/user', middle.validation, User.createUser);
 app.get('/categories', middle.validateToken, Category.getAllCategories);
 app.post('/categories', middle.validateToken, middle.authRequiredData, Category.createCategory);
 
-app.post('/post', middle.validateToken, (req, res) => {
-    res.status(200).json({ message: 'Aqui estamos, amigos' });
-});
+app.post('/post', middle.validateToken, middle.authRequiredData, BlogPost.createBlogPost);
 
 // ...
 

@@ -1,21 +1,19 @@
-const getRequiredDataOk = (bodyData, path) => {
+const getRoute = (path) => {
     const requiredData = {
         loginRoute: ['email', 'password'],
         categoriesRoute: ['name'],
+        postRoute: ['title', 'content', 'categoryIds'],
     };
-    let result = true;
 
-    if (path === '/login') {
-        const { loginRoute } = requiredData;
-        result = loginRoute.every((item) => item in bodyData);
-    }
+    if (path === '/login') return requiredData.loginRoute;
+    if (path === '/categories') return requiredData.categoriesRoute;
+    if (path === '/post') return requiredData.postRoute;
+};
 
-    if (path === '/categories') {
-        const { categoriesRoute } = requiredData;
-        result = categoriesRoute.every((item) => item in bodyData);
-    }
+const getRequiredDataOk = (bodyData, path) => {
+    const route = getRoute(path);
 
-    return result;
+    return route.every((item) => item in bodyData);
 };
 
 module.exports = getRequiredDataOk;
